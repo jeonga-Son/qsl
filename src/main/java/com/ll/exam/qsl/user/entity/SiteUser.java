@@ -1,5 +1,6 @@
 package com.ll.exam.qsl.user.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,8 @@ import javax.persistence.*;
 // @Getter @Setter 어노테이션을 붙이주면 명클래스 멤버 변수들의 getter, setter 메소드를 이용 할 수 있다.
 @Getter
 @Setter
+// @AllArgsConstructor 어노테이션은 모든 필드 값을 파라미터로 받는 생성자를 만들어준다.
+@AllArgsConstructor
 public class SiteUser {
     //기본키 매핑
     // 테이블 상의 Primary Key 와 같은 의미를 가지며 @Id 어노테이션으로 표기
