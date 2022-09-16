@@ -31,9 +31,9 @@
     - 엔티티를 학습해서 Q 클래스를 만들어낸다.
   
   <br>
-  <img src="https://github.com/jeonga-Son/qsl/raw/master/img_5.png" align="left" />
+* <img src="https://github.com/jeonga-Son/qsl/raw/master/img_5.png" align="left" />
 <br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br>
-        ➡️Entity 파일 수정시마다 눌러줘야 한다.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        ➡️Entity 파일 수정시마다 눌러줘야 한다.
 <br>
 <br>
   <img src="https://github.com/jeonga-Son/qsl/raw/master/img.png" align=left />
@@ -50,12 +50,22 @@
 <br>
 * static import를 이용해서 DSL 간소화
 <br>
-<br>
 <img src="https://raw.githubusercontent.com/jeonga-Son/qsl/5377c6e86223f8337606a2ec894a3bb178a6e837/img_6.png" align="left" />
 <br>
 <img src="https://raw.githubusercontent.com/jeonga-Son/qsl/5377c6e86223f8337606a2ec894a3bb178a6e837/img_7.png" align="left" />
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 
 * InitData
 <br>
  테스트용샘플데이터 와 개발용 샘플 데이터를 등록해놓을 수 있다.
+<br>
+<br>
+
+* 페이징 처리 개념
+<br>
+페이징이란 한 화면에서 보여주는 데이터의 범위를 결정하는 일련의 방법을 말한다.
+<br>
+<br>
+🔻페이지 자료구조에서 전체 엘리먼트 개수가 필요한 이유는?
+<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ➡️페이지 메뉴를 그려야 하기 때문에 필요하다.
