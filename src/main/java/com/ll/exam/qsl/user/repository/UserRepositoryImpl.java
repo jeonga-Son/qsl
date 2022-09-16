@@ -1,14 +1,34 @@
 package com.ll.exam.qsl.user.repository;
 
+import com.ll.exam.qsl.user.entity.QSiteUser;
 import com.ll.exam.qsl.user.entity.SiteUser;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 
+//@RequiredArgsConstructor 어노테이션은 생성자 주입을 편리하게 도와주는 lombok 어노테이션이다.
+//final이나 @NotNull을 필드 앞에 붙이면 생성자를 자동으로 생성해준다.
+//의존성이 많아지는 경우 간결한 생성자 주입을 할 수 있도록 도와준다.
+@RequiredArgsConstructor
 // 꼭 Impl이라고 해야한다! JPA rule이다.
 public class UserRepositoryImpl implements UserRepositoryCustom {
 
+    private final JPAQueryFactory jpaQueryFactory;
+
     @Override
-    public SiteUser getUser(Long id) {
+    public SiteUser getQslUser(Long id) {
+        /*
+        SELECT *
+        FROM site_user
+         WHERE id = 1
+         */
+
+        /*
+        return jpaQueryFactory
+                .select(QSiteUser.siteUser)
+                .from(QSiteUser.siteUser)
+                .where(QSiteUser.siteUser.id.eq(1L))
+                .fetch();
+         */
         return null;
     }
-
 }

@@ -28,4 +28,5 @@ class UserRepositoryTests {
         // asList()를 사용해서 내용을 수정하면 원본 배열도 함께 바뀌게 됨
         // Arrays.asList()로 만든 List에 새로운 원소를 추가하거나 삭제는 할 수 없다.
     }
+
 }
