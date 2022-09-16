@@ -103,9 +103,18 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
         List<SiteUser> users = usersQuery.fetch();
 
+        JPAQuery<Long> usersCountQuery = jpaQueryFactory
+                .select(siteUser.count())
+                .from(siteUser)
+                .where(
+                        siteUser.username.contains(kw)
+                                .or(siteUser.email.contains(kw))
+                );
+
         // PageableExecutionUtils.getPage 페이지를 만들어준다.
         // 현재는 List를 Page형태로 바꿔주고 있다.
         // 함수 자체를 넘기고 싶으면 :: 를 써야한다.
-        return PageableExecutionUtils.getPage(users, pageable, usersQuery::fetchCount);
+
+        return PageableExecutionUtils.getPage(users, pageable, usersCountQuery::fetchOne);
     }
 }
