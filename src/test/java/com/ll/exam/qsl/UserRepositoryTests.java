@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,5 +72,13 @@ class UserRepositoryTests {
         assertThat(u2.getUsername()).isEqualTo("user2");
         assertThat(u2.getEmail()).isEqualTo("user2@test.com");
         assertThat(u2.getPassword()).isEqualTo("{noop}1234");
+    }
+
+    @Test
+    @DisplayName("모든 회원 수")
+    void t4() {
+        long count = userRepository.getQslCount();
+
+        assertThat(count).isGreaterThan(0);
     }
 }

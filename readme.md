@@ -54,10 +54,8 @@
 <img src="https://raw.githubusercontent.com/jeonga-Son/qsl/5377c6e86223f8337606a2ec894a3bb178a6e837/img_6.png" align="left" />
 <br>
 <img src="https://raw.githubusercontent.com/jeonga-Son/qsl/5377c6e86223f8337606a2ec894a3bb178a6e837/img_7.png" align="left" />
-<br>
-<br>
-  <br><br><br><br><br>
-  <br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+
 * InitData
 <br>
  테스트용샘플데이터 와 개발용 샘플 데이터를 등록해놓을 수 있다.
