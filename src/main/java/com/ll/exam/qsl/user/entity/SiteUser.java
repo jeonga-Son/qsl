@@ -1,8 +1,11 @@
 package com.ll.exam.qsl.user.entity;
 
+import com.ll.exam.qsl.interestKeyword.entity.InterestKeyword;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 // @Entity는 JPA를 사용해 테이블과 매핑할 클래스에 붙여주는 어노테이션이다. 객체와 테이블 매핑.
 // 이 어노테이션을 붙임으로써 JPA가 해당 클래스를 관리하게 된다.
@@ -39,6 +42,13 @@ public class SiteUser {
     @Column(unique = true)
     private String email;
 
+    // @Builder default 어노테이션을 붙이게 되면 초기화를 시키지 않더라도 기본값을 지정할 수 있다.
+    @Builder.Default
+    // CascadeType.ALL: 모든 Cascade를 적용
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<InterestKeyword> interestKeywords = new HashSet<>();
+
     public void addInterestKeywordContent(String keywordContent) {
+        interestKeywords.add(new InterestKeyword(keywordContent));
     }
 }
