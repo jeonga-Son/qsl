@@ -76,6 +76,13 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
     @Override
     public Page<SiteUser> searchQsl(String kw, Pageable pageable) {
-        return null;
+        return jpaQueryFactory
+                .select(siteUser)
+                .from(siteUser)
+                .where(
+                        siteUser.username.contains(kw)
+                )
+                .orderBy(siteUser.id.asc())
+                .fetch();
     }
 }
