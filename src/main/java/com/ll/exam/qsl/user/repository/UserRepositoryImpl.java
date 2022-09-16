@@ -6,8 +6,10 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 
 import java.util.List;
+import java.util.function.LongSupplier;
 
 import static com.ll.exam.qsl.user.entity.QSiteUser.siteUser;
 
@@ -76,13 +78,22 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
     @Override
     public Page<SiteUser> searchQsl(String kw, Pageable pageable) {
-        return jpaQueryFactory
+            List<SiteUser> users = jpaQueryFactory
                 .select(siteUser)
                 .from(siteUser)
                 .where(
                         siteUser.username.contains(kw)
+                                .or(siteUser.email.contains(kw))
                 )
+                .offset(pageable.getOffset()) // 몇개를 건너 띄어야 하는지 LIMIT {1}, ?
+                .limit(pageable.getPageSize()) // 한 페이지에 몇개가 보여야 하는지 LIMIT ?, {1}
                 .orderBy(siteUser.id.asc())
                 .fetch();
+
+        LongSupplier totalSupplier = () -> 2;
+
+        // PageableExecutionUtils.getPage 페이지를 만들어준다.
+        // 현재는 List를 Page형태로 바꿔주고 있다.
+        return PageableExecutionUtils.getPage(users, pageable, totalSupplier);
     }
 }
