@@ -121,8 +121,8 @@ class UserRepositoryTests {
     @Test
     @DisplayName("검색, List 리턴")
     void t7() {
-        // 검색 대상 : username, email
-        // user1로 검색
+        // 검색대상 : username, email
+        // user1 로 검색
         List<SiteUser> users = userRepository.searchQsl("user1");
 
         assertThat(users.size()).isEqualTo(1);
@@ -134,7 +134,7 @@ class UserRepositoryTests {
         assertThat(u.getEmail()).isEqualTo("user1@test.com");
         assertThat(u.getPassword()).isEqualTo("{noop}1234");
 
-        // user2로 검색
+        // user2 로 검색
         users = userRepository.searchQsl("user2");
 
         assertThat(users.size()).isEqualTo(1);
@@ -158,7 +158,6 @@ class UserRepositoryTests {
 
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.asc("id"));
-
         //Pageable은 각 페이지의 Size, 전체 페이지 수, 전체 게시물 개수 등의 정보를 알 수 있고,
         //이는 페이징 작업할 때 관리자에게 알려주는 지표로 자주 활용된다.
         Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sorts)); // 한 페이지에 itemsInAPage만큼 가능
@@ -209,14 +208,14 @@ class UserRepositoryTests {
     @DisplayName("검색, Page 리턴, id DESC, pageSize=1, page=0")
     void t9() {
         long totalCount = userRepository.count();
-        int pageSize = 1; // 한 페이지에 보여줄 아이템 개수
+        int pageSize = 1;
         int totalPages = (int)Math.ceil(totalCount / (double)pageSize);
         int page = 1;
         String kw = "user";
 
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("id"));
-        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sorts)); // 한 페이지에 10까지 가능
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sorts));
         Page<SiteUser> usersPage = userRepository.searchQsl(kw, pageable);
 
         assertThat(usersPage.getTotalPages()).isEqualTo(totalPages);

@@ -81,6 +81,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .fetch();
     }
 
+
+    //페이지를 리턴할 때는 무조건 쿼리가 두개 있어야 한다. 전체 개수를 가져오는 쿼리, 해당한는 현재 페이지 가져오는 쿼리.
     @Override
     public Page<SiteUser> searchQsl(String kw, Pageable pageable) {
         // fetch 하기 전에 중간에 끊으려면 JPAQuery로 받으면 된다.
@@ -101,10 +103,9 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
         List<SiteUser> users = usersQuery.fetch();
 
-        LongSupplier totalSupplier = () -> 2;
-
         // PageableExecutionUtils.getPage 페이지를 만들어준다.
         // 현재는 List를 Page형태로 바꿔주고 있다.
-        return PageableExecutionUtils.getPage(users, pageable, totalSupplier);
+        // 함수 자체를 넘기고 싶으면 :: 를 써야한다.
+        return PageableExecutionUtils.getPage(users, pageable, usersQuery::fetchCount);
     }
 }
