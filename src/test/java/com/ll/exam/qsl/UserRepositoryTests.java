@@ -21,8 +21,21 @@ class UserRepositoryTests {
     //@DisplayName 어노테이션을 선언함으로써 테스트 클래스나 메서드명이 아닌 사용자가 정의한 명칭으로 변경할 수 있는 기능을 제공한다.
     @DisplayName("회원 생성")
     void t1() {
-        SiteUser u1 = new SiteUser(null, "user1", "{noop}1234", "user1@test.com"); // 패스워드는 암호화 안하면 {noop} 붙이는 것이 관례
-        SiteUser u2 = new SiteUser(null, "user2", "{noop}1234", "user2@test.com");
+        // builder 사용하면 순서 상관없음!
+        // 패스워드는 암호화 안하면 {noop} 붙이는 것이 관례
+        SiteUser u1 = SiteUser.builder()
+                .username("user1")
+                .password("{noop}1234")
+                .email("user1@test.com")
+                .build();
+
+        SiteUser u2 = SiteUser.builder()
+                .username("user2")
+                .password("{noop}1234")
+                .email("user2@test.com")
+                .build();
+
+//        SiteUser u2 = new SiteUser(null, "user2", "{noop}1234", "user2@test.com");
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         // Array(배열)을 List로 변경할때 사용한다.

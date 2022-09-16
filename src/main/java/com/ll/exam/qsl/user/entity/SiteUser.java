@@ -1,9 +1,6 @@
 package com.ll.exam.qsl.user.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -18,6 +15,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 // @AllArgsConstructor 어노테이션은 모든 필드 값을 파라미터로 받는 생성자를 만들어준다.
 @AllArgsConstructor
+// @Builder는 @AllArgsConstructor가 꼭 있어야 한다.
+//클래스 레벨에서 @Builder 어노테이션을 붙이면 모든 요소를 받는 package-private 생성자가 자동으로 생성되며 이 생성자에 @Builder 어노테이션을 붙인 것과 동일하게 동작한다.
+@Builder
 public class SiteUser {
     //기본키 매핑
     // 테이블 상의 Primary Key 와 같은 의미를 가지며 @Id 어노테이션으로 표기
