@@ -6,12 +6,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+// 테스트 모드 활성화
+@ActiveProfiles("test")
 class UserRepositoryTests {
     // @Autowired는 의존관계 주입(DI)을 할 때 사용하는 어노테이션(Annotation)이며, IoC컨테이너에 존재하는 빈(Bean)을 찾아 주입하는 역할을 한다.
     @Autowired
@@ -23,21 +26,21 @@ class UserRepositoryTests {
     void t1() {
         // builder 사용하면 순서 상관없음!
         // 패스워드는 암호화 안하면 {noop} 붙이는 것이 관례
-        SiteUser u1 = SiteUser.builder()
-                .username("user1")
+        SiteUser u3 = SiteUser.builder()
+                .username("user3")
                 .password("{noop}1234")
-                .email("user1@test.com")
+                .email("user3@test.com")
                 .build();
 
-        SiteUser u2 = SiteUser.builder()
-                .username("user2")
+        SiteUser u4 = SiteUser.builder()
+                .username("user4")
                 .password("{noop}1234")
-                .email("user2@test.com")
+                .email("user4@test.com")
                 .build();
 
 //        SiteUser u2 = new SiteUser(null, "user2", "{noop}1234", "user2@test.com");
 
-        userRepository.saveAll(Arrays.asList(u1, u2));
+        userRepository.saveAll(Arrays.asList(u3, u4));
         // Array(배열)을 List로 변경할때 사용한다.
         // asList()를 사용해서 객체를 만들때 새로운 배열 객체를 만드는 것이 아니라, 원본배열의 주소값을 참조한다.
         // asList()를 사용해서 내용을 수정하면 원본 배열도 함께 바뀌게 됨
