@@ -19,4 +19,4 @@
   <br><br><br><br><br>
 * UserRepository 클래스의 계보
 
-![](../../Users/jjeon/OneDrive/바탕 화면/스크린샷.png)
+![img_2.png](img_2.png)

@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 class UserRepositoryTests {
     // @Autowired는 의존관계 주입(DI)을 할 때 사용하는 어노테이션(Annotation)이며, IoC컨테이너에 존재하는 빈(Bean)을 찾아 주입하는 역할을 한다.
@@ -29,4 +31,14 @@ class UserRepositoryTests {
         // Arrays.asList()로 만든 List에 새로운 원소를 추가하거나 삭제는 할 수 없다.
     }
 
+    @Test
+    @DisplayName("1번 회원을 Qsl로 가져오기")
+    void t2() {
+        SiteUser u1 = userRepository.getQslUser(1L);
+
+        assertThat(u1.getId()).isEqualTo(1L);
+        assertThat(u1.getUsername()).isEqualTo("user1");
+        assertThat(u1.getEmail()).isEqualTo("user1@test.com");
+        assertThat(u1.getPassword()).isEqualTo("{noop}1234");
+    }
 }
