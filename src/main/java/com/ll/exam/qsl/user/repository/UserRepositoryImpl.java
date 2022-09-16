@@ -5,6 +5,8 @@ import com.ll.exam.qsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 import static com.ll.exam.qsl.user.entity.QSiteUser.siteUser;
 
 //@RequiredArgsConstructor 어노테이션은 생성자 주입을 편리하게 도와주는 lombok 어노테이션이다.
@@ -47,5 +49,10 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .orderBy(siteUser.id.asc())
                 .limit(1)
                 .fetchOne();
+    }
+
+    @Override
+    public List<SiteUser> getQslUsersOrderByIdAsc() {
+        return null;
     }
 }
