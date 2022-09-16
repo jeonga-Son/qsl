@@ -5,6 +5,8 @@ import com.ll.exam.qsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import static com.ll.exam.qsl.user.entity.QSiteUser.siteUser;
+
 //@RequiredArgsConstructor 어노테이션은 생성자 주입을 편리하게 도와주는 lombok 어노테이션이다.
 //final이나 @NotNull을 필드 앞에 붙이면 생성자를 자동으로 생성해준다.
 //의존성이 많아지는 경우 간결한 생성자 주입을 할 수 있도록 도와준다.
@@ -23,9 +25,9 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
          */
 
         return jpaQueryFactory
-                .select(QSiteUser.siteUser)
-                .from(QSiteUser.siteUser)
-                .where(QSiteUser.siteUser.id.eq(id))
+                .select(siteUser)
+                .from(siteUser)
+                .where(siteUser.id.eq(id))
                 .fetchOne();
     }
 }

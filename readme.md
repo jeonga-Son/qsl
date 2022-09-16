@@ -20,3 +20,8 @@
 * UserRepository 클래스의 계보
 
 ![img_2.png](img_2.png)
+<br>
+<br>
+* static import를 이용해서 DSL 간소화
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
