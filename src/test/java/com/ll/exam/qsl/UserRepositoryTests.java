@@ -6,9 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -140,5 +145,40 @@ class UserRepositoryTests {
         assertThat(u.getUsername()).isEqualTo("user2");
         assertThat(u.getEmail()).isEqualTo("user2@test.com");
         assertThat(u.getPassword()).isEqualTo("{noop}1234");
+    }
+
+    @Test
+    @DisplayName("검색, Page 리턴")
+    void t8() {
+        int itemsInAPage = 1; // 한 페이지에 보여줄 아이템 개수
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.asc("id"));
+
+        //Pageable은 각 페이지의 Size, 전체 페이지 수, 전체 게시물 개수 등의 정보를 알 수 있고,
+        //이는 페이징 작업할 때 관리자에게 알려주는 지표로 자주 활용된다.
+        Pageable pageable = PageRequest.of(1, itemsInAPage, Sort.by(sorts)); // 한 페이지에 itemsInAPage만큼 가능
+        Page<SiteUser> users = userRepository.searchQsl("user", pageable);
+        // 검색어 : user
+        // 한 페이지에 나올 수 있는 아이템 수 : 1개
+        // 현재 페이지 : 1
+        // 정렬 : id 순차
+
+        // 내용 가져오는 SQL
+        /*
+        SELECT site_user.*
+        FROM site_user
+        WHERE site_user.username LIKE '%user%'
+        OR site_user.email LIKE '%user%'
+        ORDER BY site_user.id ASC
+        LIMIT 1, 1
+         */
+
+        // 전체 개수 계산하는 SQL
+         /*
+        SELECT count(*)
+        FROM site_user
+        WHERE site_user.username LIKE '%user%'
+        OR site_user.email LIKE '%user%'
+         */
     }
 }
