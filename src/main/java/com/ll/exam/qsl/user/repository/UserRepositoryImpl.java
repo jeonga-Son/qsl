@@ -17,6 +17,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import java.util.List;
 import java.util.function.LongSupplier;
 
+import static com.ll.exam.qsl.interestKeyword.entity.QInterestKeyword.interestKeyword;
 import static com.ll.exam.qsl.user.entity.QSiteUser.siteUser;
 
 //@RequiredArgsConstructor 어노테이션은 생성자 주입을 편리하게 도와주는 lombok 어노테이션이다.
@@ -131,13 +132,11 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         WHERE IK.content = "호캉스";
          */
 
-        QInterestKeyword IK = new QInterestKeyword("IK");
-
         return jpaQueryFactory
                 .selectFrom(siteUser)
-                .innerJoin(siteUser.interestKeywords, IK)
+                .innerJoin(siteUser.interestKeywords, interestKeyword)
                 .where(
-                        IK.content.eq(keywordContent)
+                        interestKeyword.content.eq(keywordContent)
                 )
                 .fetch();
     }
