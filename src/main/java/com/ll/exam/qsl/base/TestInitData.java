@@ -31,7 +31,13 @@ public class TestInitData {
                     .email("user2@test.com")
                     .build();
 
-            List<SiteUser> siteUsers = userRepository.saveAll(Arrays.asList(u1, u2));
+            u1.addInterestKeywordContent("해외여행");
+            u1.addInterestKeywordContent("국내여행");
+
+            u2.addInterestKeywordContent("밤산책");
+            u2.addInterestKeywordContent("바다구경");
+
+            userRepository.saveAll(Arrays.asList(u1, u2));
         };
     }
 }
