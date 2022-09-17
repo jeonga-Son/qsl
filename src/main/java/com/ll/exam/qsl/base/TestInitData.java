@@ -31,8 +31,8 @@ public class TestInitData {
                     .email("user2@test.com")
                     .build();
 
-            u1.addInterestKeywordContent("해외여행");
-            u1.addInterestKeywordContent("국내여행");
+            u1.addInterestKeywordContent("호캉스");
+            u1.addInterestKeywordContent("별보러가기");
 
             u2.addInterestKeywordContent("밤산책");
             u2.addInterestKeywordContent("바다구경");
