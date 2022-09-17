@@ -31,11 +31,11 @@ public class TestInitData {
                     .email("user2@test.com")
                     .build();
 
-            u1.addInterestKeywordContent("호캉스");
-            u1.addInterestKeywordContent("별보러가기");
+            u1.addInterestKeywordContent("축구");
+            u1.addInterestKeywordContent("농구");
 
-            u2.addInterestKeywordContent("밤산책");
-            u2.addInterestKeywordContent("바다구경");
+            u2.addInterestKeywordContent("클라이밍");
+            u2.addInterestKeywordContent("마라톤");
 
             userRepository.saveAll(Arrays.asList(u1, u2));
         };

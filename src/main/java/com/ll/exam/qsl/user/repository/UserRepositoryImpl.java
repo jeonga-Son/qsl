@@ -119,7 +119,20 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     }
 
     @Override
-    public List<SiteUser> getQslUserByInterestKeyword(String keywordContent) {
-        return null;
+    public List<SiteUser> getQslUsersByInterestKeyword(String keywordContent) {
+        /*
+        SELECT SU. *
+        FROM site_user AS SU
+        INNER JOIN site_user_interest_keywords AS SUIK
+        ON SU.id = SUIK.site_user_id
+        INNER JOIN interest_keyword AS IK
+        ON IK.content = SUIK.interest_keywords_content
+        WHERE IK.content = "호캉스";
+         */
+
+        return jpaQueryFactory
+                .selectFrom(siteUser)
+                .innerJoin(siteUser.interestKeywords)
+                .fetch();
     }
 }
