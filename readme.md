@@ -69,3 +69,15 @@
 🔻페이지 자료구조에서 전체 엘리먼트 개수가 필요한 이유는?
 <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ➡️페이지 메뉴를 그려야 하기 때문에 필요하다.
+
+<br>
+
+* orphanRemoval = true 와 CascadeType.REMOVE 차이점
+  <br>
+  1) CascadeType.REMOVE : 부모가 없어질 때 자식도 같이 없어짐. 고아객체 만들어짐.
+<br>
+  2) orphanRemoval = true ➡️orphan이 고아라는 뜻. 부모가 버린 자식이 자동으로 제거된다. @OneToMany에서만 쓰일 수 있다.
+<br>
+<br>
+
+* PERSIST는 INSERT, MERGE는 UPDATE가 아니다.

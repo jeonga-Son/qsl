@@ -92,7 +92,7 @@ public class TestInitData {
             u7.follow(u4);
             u7.follow(u3);
 
-            userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7, u8)); //MERGE
+            userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7, u8)); //MERGE // ManyToMany 관계의 영속성 전이를 위해서 save를 한번 더 진행
         };
     }
 }

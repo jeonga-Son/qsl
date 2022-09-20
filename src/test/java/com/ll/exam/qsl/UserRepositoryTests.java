@@ -305,7 +305,6 @@ class UserRepositoryTests {
 
     @Test
     @DisplayName("특정회원의 follower들과 following들을 모두 알 수 있다.")
-    @Rollback(false)
     void t15() {
         SiteUser u1 = userRepository.getQslUser(1L);
         SiteUser u2 = userRepository.getQslUser(2L);
@@ -327,5 +326,17 @@ class UserRepositoryTests {
         // following
         // u2가 구독중인 회원 : 0
         assertThat(u2.getFollowings().size()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("u1은 더 이상 농구에 관심이 없습니다.")
+//    @Rollback(false) TEST 확인용. DB에 저장(반영)된 것 확인하기 위해.
+    void t16() {
+        SiteUser u1 = userRepository.getQslUser(1L);
+
+        u1.removeInterestKeywordContent("농구");
+        u1.removeInterestKeywordContent("축구");
+
+        // Transctional이 걸려있기 때문에 save 안해도 됨.
     }
 }

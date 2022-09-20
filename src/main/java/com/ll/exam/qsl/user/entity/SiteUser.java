@@ -50,7 +50,7 @@ public class SiteUser {
     // mappedBy는 양방향 매핑에서 사용되는 개념이다. 양방향으로 참조될 때 참조 당하는 엔티티에서 사용한다.
     // @OneToMany(mappedBy = "참조하는 엔티티에 있는 변수 이름") 으로 작성할 수 있다.
     // mappedBy를 사용하는 이유는, 현재 자신의 참조가 해당 엔티티에 어떤 변수로 지정되었는지 JPA 에게 알려주기 위함이다.
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true) //객체수준에서 끊어진 것을 orphanRemoval = true를 통해 DB에서도 지워지게 한다.
     // Set으로 담음. 예를들어서 농구를 좋아한다는 것을 두번 담을 필요가 없기때문이다.
     private Set<InterestKeyword> interestKeywords = new HashSet<>();
 
@@ -64,6 +64,10 @@ public class SiteUser {
 
     public void addInterestKeywordContent(String keywordContent) {
         interestKeywords.add(new InterestKeyword(this, keywordContent));
+    }
+
+    public void removeInterestKeywordContent(String keywordContent) {
+        interestKeywords.remove(new InterestKeyword(this, keywordContent));
     }
 
     public void follow(SiteUser following) {
