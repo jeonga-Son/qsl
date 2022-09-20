@@ -37,21 +37,21 @@ class UserRepositoryTests {
     void t1() {
         // builder 사용하면 순서 상관없음!
         // 패스워드는 암호화 안하면 {noop} 붙이는 것이 관례
-        SiteUser u3 = SiteUser.builder()
-                .username("user3")
+        SiteUser u9 = SiteUser.builder()
+                .username("user9")
                 .password("{noop}1234")
-                .email("user3@test.com")
+                .email("user9@test.com")
                 .build();
 
-        SiteUser u4 = SiteUser.builder()
-                .username("user4")
+        SiteUser u10 = SiteUser.builder()
+                .username("user10")
                 .password("{noop}1234")
-                .email("user4@test.com")
+                .email("user10@test.com")
                 .build();
 
 //        SiteUser u2 = new SiteUser(null, "user2", "{noop}1234", "user2@test.com");
 
-        userRepository.saveAll(Arrays.asList(u3, u4));
+        userRepository.saveAll(Arrays.asList(u9, u10));
         // Array(배열)을 List로 변경할때 사용한다.
         // asList()를 사용해서 객체를 만들때 새로운 배열 객체를 만드는 것이 아니라, 원본배열의 주소값을 참조한다.
         // asList()를 사용해서 내용을 수정하면 원본 배열도 함께 바뀌게 됨
@@ -229,9 +229,9 @@ class UserRepositoryTests {
 
         SiteUser u = users.get(0);
 
-        assertThat(u.getId()).isEqualTo(1L);
-        assertThat(u.getUsername()).isEqualTo("user1");
-        assertThat(u.getEmail()).isEqualTo("user1@test.com");
+        assertThat(u.getId()).isEqualTo(7L);
+        assertThat(u.getUsername()).isEqualTo("user7");
+        assertThat(u.getEmail()).isEqualTo("user7@test.com");
         assertThat(u.getPassword()).isEqualTo("{noop}1234");
     }
 
