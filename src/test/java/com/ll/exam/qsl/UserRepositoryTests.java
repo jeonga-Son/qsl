@@ -339,4 +339,22 @@ class UserRepositoryTests {
 
         // Transctional이 걸려있기 때문에 save 안해도 됨.
     }
+
+    @Test
+    @DisplayName("팔로워중인 사람들의 관심사")
+    void t17() {
+        // 8번회원
+        SiteUser u = userRepository.getQslUser(8L);
+
+        List<String> keywordContents = userRepository.getKeywordContentsByFollowingsOf(u);
+
+        assertThat(keywordContents.size()).isEqualTo(5);
+
+        // 7번회원
+        u = userRepository.getQslUser(7L);
+
+        keywordContents = userRepository.getKeywordContentsByFollowingsOf(u);
+
+        assertThat(keywordContents.size()).isEqualTo(4);
+    }
 }

@@ -75,17 +75,23 @@ public class TestInitData {
             u2.addInterestKeywordContent("마라톤");
             u2.addInterestKeywordContent("농구");
 
+            u3.addInterestKeywordContent("피아노");
+            u4.addInterestKeywordContent("바이롤린");
+            u5.addInterestKeywordContent("베이스");
+            u6.addInterestKeywordContent("기타");
+            u6.addInterestKeywordContent("베이스");
+            u7.addInterestKeywordContent("EDM");
+            // 피아노, 바이올린, 베이스, 기타, EDM 총 5개
+
             userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7, u8)); // PERSIST
             // @ManyToMany는 한번 save 한 이후에 해야 좋다!
 
-            u8.follow(u7);
             u8.follow(u7); // 어차피 set이기 때문에 중복되는 회원은 안들어간다.
             u8.follow(u6);
             u8.follow(u5);
             u8.follow(u4);
             u8.follow(u3);
-            u8.follow(u2);
-            u8.follow(u1);
+
 
             u7.follow(u6);
             u7.follow(u5);
