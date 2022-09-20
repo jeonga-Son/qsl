@@ -1,6 +1,5 @@
 package com.ll.exam.qsl.user.repository;
 
-import com.ll.exam.qsl.interestKeyword.entity.QInterestKeyword;
 import com.ll.exam.qsl.user.entity.QSiteUser;
 import com.ll.exam.qsl.user.entity.SiteUser;
 import com.querydsl.core.types.Order;
